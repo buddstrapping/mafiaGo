@@ -2,11 +2,11 @@ package main
 
 import (
 	"container/list"
-	"time"
 	"log"
 	"net/http"
+	"time"
 
-	"github.com/googollee/go-socket.io"
+	socketio "github.com/googollee/go-socket.io"
 )
 
 var (
@@ -15,6 +15,7 @@ var (
 	publish    = make(chan Event, 10)
 )
 
+// Event
 type Event struct {
 	EvtType   string
 	User      string
@@ -22,21 +23,25 @@ type Event struct {
 	Text      string
 }
 
+// Subscription
 type Subscription struct {
 	Archive []Event
 	New     <-chan Event
 }
 
+// Newevent
 func NewEvent(evtType, user, msg string) Event {
 	return Event{evtType, user, int(time.Now().Unix()), msg}
 }
 
+// for sub
 func Subscribe() Subscription {
 	c := make(chan Subscription)
 	subscribe <- c
 	return <-c
 }
 
+// Cancel
 func (s Subscription) Cancel() {
 	unsubsribe <- s.New
 
@@ -93,29 +98,31 @@ func Chatroom() {
 }
 
 func main() {
-	server, err := socketio.Newserver(nil)
+	server, err := socketio.NewServer(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	go Chatroom()
 
-	server.On("connection", func(so socketio.Socket) {
+	server.OnConnect("/", func(so socketio.Conn) error {
+		Join(so.ID())
+		log.Println("connected: ", so.ID())
 		s := Subscribe()
-		Join(so.Id())
 
 		for _, event := range s.Archive {
 			so.Emit("event", event)
 		}
 
 		newMessages := make(chan string)
-
-		so.On("message", func(msg string) {
+		server.OnEvent("/", "event", func(so socketio.Conn, msg string) {
+			log.Println("Emit Event: ", msg)
 			newMessages <- msg
 		})
 
-		so.On("disconnection", func() {
-			Leave(so.Id())
+		server.OnDisconnect("/", func(so socketio.Conn, reason string) {
+			log.Println("Disconnected: ", so.ID())
+			Leave(so.ID())
 			s.Cancel()
 		})
 
@@ -124,11 +131,13 @@ func main() {
 				select {
 				case event := <-s.New:
 					so.Emit("event", event)
-				case msg := <- newMessages:
-					Say(so.Id(), msg)
+				case msg := <-newMessages:
+					Say(so.ID(), msg)
 				}
 			}
-		}
+		}()
+
+		return nil
 	})
 
 	http.Handle("/socket.io/", server)
