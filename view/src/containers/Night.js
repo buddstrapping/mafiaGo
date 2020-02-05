@@ -1,6 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../assets/logo.svg';
+import '../assets/App.css';
+import swal from "sweetalert";
+
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
 
 function Car() {
   return (
-    <h1>Test Mafia!</h1>
+    <h1>N</h1>
   );
 }
 
@@ -37,8 +39,9 @@ class TestAlert extends React.Component {
     this.state = { msg : "Mafia"}
   }
 
-  makeAlert = () => {
-    alert("You are " + this.state.msg);
+  makeAlert = async () => {
+    let result = await swal("Night")
+    alert(result);
   }
 
   render() {

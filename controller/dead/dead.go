@@ -13,7 +13,7 @@ func Get(c *gin.Context) {
 
 /* 부활 */
 func Revive(c *gin.Context) {
-
+	
 }
 
 /* 채팅 메시지 전송 */

@@ -1,7 +1,11 @@
 package day
 
 import (
+	"fmt"
 	"net/http"
+
+	"mafiaGo/controller/userState"
+	"mafiaGo/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +22,17 @@ func GoToNight(c *gin.Context) {
 
 /* 직업 확인 */
 func GetCareer(c *gin.Context) {
+	var user model.User
+	c.BindJSON(&user)
+
+	career := userState.CheckCareer(user)
+
+	fmt.Printf("[Day] %s %s->%s", user.Name, user.Career, career)
+	c.String(http.StatusOK, career)
+}
+
+/* 직업 테스팅 */
+func TestCareer(c *gin.Context) {
 
 }
 
