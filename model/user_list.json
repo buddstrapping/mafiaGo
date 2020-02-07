@@ -2,76 +2,67 @@
     {
         "name" : "김소용",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "김동순",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "김상헌",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "류대식",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "남기완",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "류호석",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "김수형",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "황보엽",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "정영태",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
-        "name" : "조재훈",
+        "name" : "쪼재훈",
         "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     },
     {
         "name" : "정희찬",
         "target" : "X",
-        "career": "시민"
-    },
-    {
-        "name" : "김김김",
-        "target" : "X",
-        "career": "시민"
-    },
-    {
-        "name" : "정정정",
-        "target" : "X",
-        "career": "시민"
-    },
-    {
-        "name" : "박박박",
-        "target" : "X",
-        "career": "시민"
-    },
-    {
-        "name" : "중중중",
-        "target" : "X",
-        "career": "시민"
+        "career": "시민",
+        "state" : "O"
     }
 ]

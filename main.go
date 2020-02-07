@@ -26,15 +26,16 @@ func main() {
 
 	d := router.Group("/day")
 	{
-		d.POST("/nightSwitch", day.GoToNight)
 		d.POST("/check", day.GetCareer)
-		d.POST("/liveState", day.SetLiveState)
+		d.POST("/load", day.LoadPeople)
 		d.POST("/countdown", day.Countdown)
 	}
 
 	n := router.Group("/night")
 	{
 		n.POST("/setTarget", night.SetTarget)
+		n.POST("/checkRes", night.CheckRes)
+		n.POST("/deadRequest", night.DeadRequest)
 	}
 
 	de := router.Group("/dead")

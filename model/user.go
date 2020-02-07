@@ -4,6 +4,7 @@ type User struct {
 	Name   string `json:"name"`
 	Target string `json:"target"`
 	Career string `json:"career"`
+	State  string `json:"state"`
 }
 
 type VarSet struct {

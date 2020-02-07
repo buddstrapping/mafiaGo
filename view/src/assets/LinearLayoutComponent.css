@@ -1,7 +1,0 @@
-.layout {
-    --linear-layout-item-gap: 5px;
-  }
-   
-  .sub-layout > * {
-    --linear-layout-item-gap: 20px;
-  }

@@ -20,18 +20,16 @@ func SetJobNum(c *gin.Context) {
 	var set model.VarSet
 	c.BindJSON(&set)
 	c.Request.ParseForm()
-	fmt.Printf("[SET] all : %d mafia: %d doc: %d pol: %d\n", set.AllNum, set.MafiaNum, set.DocNum, set.PolNum)
-
-	userState.SetGameRule(set)
-
-	c.String(http.StatusOK, "Set")
+	res := userState.SetGameRule(set)
+	fmt.Printf("[SET] all : %d mafia: %d doc: %d pol: %d %s\n", set.AllNum, set.MafiaNum, set.DocNum, set.PolNum, res)
+	c.String(http.StatusOK, res)
 }
 
 /* 게임 초기화 */
 func ResetGame(c *gin.Context) {
-	userState.ResetGame()
+	res := userState.ResetGame()
 
-	c.String(http.StatusOK, "Reset")
+	c.String(http.StatusOK, res)
 }
 
 /* 준비 상태 전환 */
@@ -45,6 +43,6 @@ func Ready(c *gin.Context) {
 	if res == 200 || res == 201 {
 		c.String(res, "Ready")
 	} else {
-		c.String(http.StatusBadRequest, "Not Available User")
+		c.String(res, "Not Available User")
 	}
 }

@@ -15,11 +15,6 @@ func Get(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
 }
 
-/* 밤 전환 스위치 */
-func GoToNight(c *gin.Context) {
-
-}
-
 /* 직업 확인 */
 func GetCareer(c *gin.Context) {
 	var user model.User
@@ -39,6 +34,15 @@ func TestCareer(c *gin.Context) {
 /* 사망 신고 */
 func SetLiveState(c *gin.Context) {
 
+}
+
+/* 생존자 불러오기 */
+func LoadPeople(c *gin.Context) {
+	var res []model.User
+
+	res = userState.LoadPeople()
+
+	c.JSON(http.StatusOK, res)
 }
 
 /* 회의 시간 카운트 다운 */
