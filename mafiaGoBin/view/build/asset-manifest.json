@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.65fb7180.chunk.css",
+    "main.js": "/static/js/main.6fb9cfc7.chunk.js",
+    "main.js.map": "/static/js/main.6fb9cfc7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7f195587.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7f195587.js.map",
+    "static/js/2.69827b47.chunk.js": "/static/js/2.69827b47.chunk.js",
+    "static/js/2.69827b47.chunk.js.map": "/static/js/2.69827b47.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.d082106eeb8f7dc4ac24c3ba67fbfb9c.js": "/precache-manifest.d082106eeb8f7dc4ac24c3ba67fbfb9c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.65fb7180.chunk.css.map": "/static/css/main.65fb7180.chunk.css.map",
+    "static/js/2.69827b47.chunk.js.LICENSE.txt": "/static/js/2.69827b47.chunk.js.LICENSE.txt",
+    "static/media/audio.mp3": "/static/media/audio.fc9c468c.mp3",
+    "static/media/death.mp3": "/static/media/death.2d405717.mp3",
+    "static/media/logo.svg": "/static/media/logo.ee7cd8ed.svg",
+    "static/media/moon.svg": "/static/media/moon.776881f2.svg",
+    "static/media/repairing-service.svg": "/static/media/repairing-service.bd1c28c6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f195587.js",
+    "static/js/2.69827b47.chunk.js",
+    "static/css/main.65fb7180.chunk.css",
+    "static/js/main.6fb9cfc7.chunk.js"
+  ]
+}

@@ -4,15 +4,85 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "npm",
-            "label": "npm_view_build",
-            "script": "build",
-            "path": "view/",
+            "type": "shell",
+            "label": "rsyncGo",
+            "command": "rsync",
+            "args": [
+                "-avz",
+                "--delete",
+                "${workspaceFolder}/${workspaceFolderBasename}Bin",
+                "-e",
+                "ssh",
+                "${input:userName}@${input:host}:~/BinGo -p",
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": []
+            "dependsOn" : ["cpBuild"]
+        },
+        {
+            "type": "shell",
+            "label": "cpBuild",
+            "command": "rsync",
+            "args": [
+                "-r",
+                "${workspaceFolder}/view/build",
+                "${workspaceFolder}/${workspaceFolderBasename}Bin/view"
+            ],
+            "group": "build",
+            "dependsOn" : ["buildGo"]
+        },
+        {
+            "type": "shell",
+            "label": "buildGo",
+            "command": "env",
+            "args": [
+                "GOOS=${input:targetOS}",
+                "GOARCH=${input:targetArch}",
+                "${input:armVersion}",
+                "go",
+                "build",
+                "-o",
+                "${workspaceFolder}/${workspaceFolderBasename}Bin/${workspaceFolderBasename}",
+            ],
+            "group": "build"
         }
-    ]
+    ],
+    "inputs" : [
+        {
+            "id": "userName",
+            "type": "promptString",
+            "default": "smalldragon",
+            "description": "remote user's name"
+        }, 
+        {
+            "id" : "host",
+            "type": "promptString",
+            "default" : "192.168.34.12",
+            "description": "remote user's address"
+        },
+        {
+            "id" : "targetOS",
+            "type": "pickString",
+            "default" : "linux",
+            "description": "Target OS",
+            "options": ["linux", "windows"]
+        },
+        {
+            "id" : "targetArch",
+            "type": "pickString",
+            "default" : "amd64",
+            "description": "Target Architecture",
+            "options": ["amd64", "arm"]
+        },
+        {
+            "id" : "armVersion",
+            "type": "pickString",
+            "default" : "",
+            "description": "Target Architecture",
+            "options": ["", "GOARM=7"]
+        },
+    ],
+    
 }
